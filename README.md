@@ -1,4 +1,7 @@
 # weather
+To try something with
+* Vue.
+* openweather APIs.
 
 ## Project setup
 ```
