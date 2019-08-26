@@ -41,7 +41,12 @@
 		</div>
 		
 		<!-- footer section -->
-		<footer>Powered By: <img src="./assets/logo.png" style="height: 20px; width: 20px; top: 4px; position: relative;"></footer>
+		<footer>
+			Powered By: 
+				<a href='https://vuejs.org'><img src="./assets/logo.png" title='Vue.js'></a>
+				<a href='https://getbootstrap.com'><img src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" title='Bootstrap'></a>
+				<a href='https://openweathermap.org'><img src="https://openweathermap.org/themes/openweathermap/assets/img/openweather-negative-logo-RGB.png" style="width:50px" title='openweathermap'></a>
+		</footer>
 	</div>
 </template>
 
@@ -84,5 +89,12 @@ footer {
 	text-align: center;
 	color: var(--light);
 	background: var(--dark);
+}
+
+footer a img {
+	height: 20px;
+	width: 20px;
+	position: relative;
+	margin-right: 0.5rem;
 }
 </style>
