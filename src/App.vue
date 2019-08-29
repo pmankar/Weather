@@ -71,9 +71,6 @@ export default {
 }
 import axios from "axios";
 
-function getImgURL(){
-	return "ok";
-}
 </script>
 
 <style>
