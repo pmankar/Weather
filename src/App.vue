@@ -10,7 +10,7 @@
 			<div v-if="body" class="card border border-primary shadow mt-4" style="width: 24rem;">
 				<div class="card-body pb-0">
 					<div class="row">
-						<img class="col col-sm-4" :src="'http://openweathermap.org/img/wn/' + body.weather[0].icon + '@2x.png'">
+						<img class="col col-sm-4" :src="'https://openweathermap.org/img/wn/' + body.weather[0].icon + '@2x.png'">
 						<div class="col-sm-8"><b> {{ body.main.temp }} °C </b> at {{ body.main.pressure }} hpa<br>
 						<b>{{ body.weather[0].main}} </b> <br>
 						<small>{{ body.weather[0].description }} </small> <br>
