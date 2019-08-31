@@ -22,3 +22,9 @@ yarn-error.log*
 
 # Jekyll
 _site/
+
+# Vue config
+vue.config.js
+
+# Deployment
+deploy.bat

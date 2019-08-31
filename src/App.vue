@@ -2,40 +2,46 @@
 	<div id="app" class="container mt-4">
 		<!-- header section -->
 		<div class="header">
-			<h2>{{ header }} </h2>
 		</div>
 		
 		<!-- page body  -->
 		<div class="body">
-			<div v-if="body" class="card border border-primary shadow mt-4" style="width: 24rem;">
-				<div class="card-body pb-0">
+			<div v-if="body" class="card border shadow mt-4" style="width: 21rem;">
+				<div class="card-body m-3">
 					<div class="row">
-						<img class="col col-sm-4" :src="'https://openweathermap.org/img/wn/' + body.weather[0].icon + '@2x.png'">
-						<div class="col-sm-8"><b> {{ body.main.temp }} °C </b> at {{ body.main.pressure }} hpa<br>
-						<b>{{ body.weather[0].main}} </b> <br>
-						<small>{{ body.weather[0].description }} </small> <br>
-						<small>Last updated: {{ (new Date( body.dt * 1000 )).toLocaleTimeString() }} </small> <br>
-						</div>
+						<h4 class="card-title">{{ body.name }}</h4>
 					</div>
-					<hr>
+					<div class="row">
+						<p><small>{{ (new Date( body.dt * 1000 )).toLocaleTimeString() }}, {{ body.weather[0].description }} </small></p>
+					</div>					
+					<div class="row">
+						<div class="col col-xs-12">
+							<p class="display-1 tempC"> {{ Math.round(body.main.temp) }}</p>
+						</div>
+						<!--<img class="col col-xs-4" :src="'https://openweathermap.org/img/wn/' + body.weather[0].icon + '@2x.png'">
+						<b>{{ body.weather[0].main}} </b> <br>
+							<small>{{ body.weather[0].description }} </small> <br>
+						-->
+					</div>
+					<div class="row">
+						Humidity: {{ body.main.humidity }}% at {{ body.main.pressure }} hpa <br>
+						Wind: {{ body.wind.speed }} kmph at {{ body.wind.deg }}°
+					</div>
 				</div>
 				<div class="card-body pt-0">
 					<div class="row my-1">
-						<div class="col-sm-6">Min: {{ body.main.temp_min}} °C</div>
-						<div class="col-sm-6">Max: {{ body.main.temp_max}} °C</div>
+						<div class="col col-xs-6">Min: {{ body.main.temp_min}} °C</div>
+						<div class="col col-xs-6">Max: {{ body.main.temp_max}} °C</div>
 					</div>
 					<div class="row my-1">
-						<div class="col-sm-6">Visibility: {{ ( body.visibility / 1000 ).toFixed(1) }} km</div>
-						<div class="col-sm-6">Wind: {{ body.wind.speed }} kmph {{ body.wind.deg ? " at " + body.wind.deg + "°": "" }}</div>
+						<div class="col col-xs-6">Sunrise: {{ pad((new Date( body.sys.sunrise * 1000 )).getHours()) + ":" + pad((new Date( body.sys.sunrise * 1000 )).getMinutes()) }}</div>
+						<div class="col col-xs-6">Sunset: {{ pad((new Date( body.sys.sunset * 1000 )).getHours()) + ":" + pad((new Date( body.sys.sunset * 1000 )).getMinutes()) }}</div>
 					</div>
-					<div class="row my-1">
-						<div class="col-sm-6">Min: {{ body.main.temp_min}} °C</div>
-						<div class="col-sm-6">Max: {{ body.main.temp_max}} °C</div>
-					</div>
-					<div class="row my-1">
-						<div class="col-sm-6">Sunrise: {{ (new Date( body.sys.sunrise * 1000 )).toLocaleTimeString() }}</div>
-						<div class="col-sm-6">Sunset: {{ (new Date( body.sys.sunset * 1000 )).toLocaleTimeString() }}</div>
-					</div>
+				</div>
+			</div>
+			<div v-else class="card border shadow mt-4" style="width: 21rem;">
+				<div class="card-body p-4">
+					Hold on, while the info is being loaded.
 				</div>
 			</div>
 		</div>
@@ -52,14 +58,14 @@
 
 <script>
 var appid = "1c36c16e8018c18485ac7e2e468df02c"; // Please don"t steal me 
-var url = "http://api.openweathermap.org/data/2.5/weather?id=3220838&units=metric&appid=" + appid;
+var url = "https://api.openweathermap.org/data/2.5/weather?id=3220838&units=metric&appid=" + appid;
 
-  
 export default {
 	data () {
 		return {
 			header: "Weather in Munich",
-			body: null
+			body: null,
+			pad: function(a) {return(100+a+"").slice(-2)}
 		}
 	},
 	 mounted() {
@@ -74,7 +80,16 @@ import axios from "axios";
 </script>
 
 <style>
+body{
+	margin-bottom: 50px !important;
+}
 
+.tempC::after{
+	content:'°C';
+	font-size: 3rem;
+	position: absolute;
+	margin-top: 1rem;
+}
 footer {
 	position: fixed;
 	bottom: 0px;
