@@ -9,7 +9,7 @@
     "deploy": "npm run build && cd dist && git init && git add -A && git commit -m \"Deployment\" && git push -f https://github.com/pmankar/Weather.git master:gh-pages"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
